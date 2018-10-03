@@ -2,6 +2,7 @@ import React from 'react';
 import Profile from './Profile.jsx';
 import AddProfile from './AddProfile.jsx';
 import {getProfiles} from '../utils/profileApi.js';
+import CustomContentControl from './CustomContentComponent.jsx';
 
 // Examples functional stateless component
 var MyComponent = props => (
@@ -70,6 +71,8 @@ export default class App extends React.Component {
     })
     return (
       <div>
+        <CustomContentControl><p>Arbitrary content</p></CustomContentControl>
+        <h1>Profiles</h1>
         {profiles}
         <AddProfile addProfile={this.addProfile} />
       </div>

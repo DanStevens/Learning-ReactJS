@@ -2,11 +2,11 @@ import React from 'react';
 
 let Profile = props => (
   <div>
-    <h1>{props.name}</h1>
+    <h2>{props.name}</h2>
     <p>
       {props.name} is {props.age} and {props.bio}
     </p>
-    <h2>Hobbies</h2>
+    <h3>Hobbies</h3>
     <ul>
       {props.hobbies.map(hobby => <li>{hobby}</li>)}
     </ul>

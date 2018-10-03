@@ -55,7 +55,7 @@ export default class AddProfile extends React.Component {
   render() {
     return (
       <div>
-        <p>Add a new profile</p>
+        <h2>Add a new profile</h2>
         <div>
           <label>Name: </label>
           <input onChange={this.handleName} value={this.state.name} />
