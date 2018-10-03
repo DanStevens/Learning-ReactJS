@@ -1,6 +1,7 @@
 import React from 'react';
 import Profile from './Profile.jsx';
 import AddProfile from './AddProfile.jsx';
+import {getProfiles} from '../utils/profileApi.js';
 
 // Examples functional stateless component
 var MyComponent = props => (
@@ -19,20 +20,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      profiles: [
-        {
-          name: 'Sue',
-          age: 30,
-          bio: 'enjoys swimming and biking',
-          hobbies: ['swimming', 'biking']
-        },
-        {
-          name: 'Bill',
-          age: 40,
-          bio: 'enjoys long walks on the beach',
-          hobbies: ['gardening', 'games']
-        }
-      ]
+      profiles: []
     }
 
     // Bind each instance function to this instance so that we don't need to call find when setting
@@ -41,6 +29,15 @@ export default class App extends React.Component {
     // We can do:
     //   <button onClick={this.addProfile}>Add</button>
     this.addProfile = this.addProfile.bind(this);
+  }
+
+  /**
+   * invoked immediately after a component is mounted (inserted into the tree and after render()).
+   * Initialization that requires DOM nodes should go here. If you need to load data from a remote
+   * endpoint, this is a good place to instantiate the network request.
+   */
+  componentDidMount() {
+    getProfiles().then(profiles => this.setState({profiles: profiles}));
   }
 
   // React doesn't use native browser events; it has its own synthetic event system on top. This
@@ -75,7 +72,6 @@ export default class App extends React.Component {
       <div>
         {profiles}
         <AddProfile addProfile={this.addProfile} />
-        <MyComponent x="X is cool!"/>
       </div>
     );
   }
