@@ -120,23 +120,61 @@ var AddProfile = function (_React$Component) {
   function AddProfile(props) {
     _classCallCheck(this, AddProfile);
 
-    var _this = _possibleConstructorReturn(this, (AddProfile.__proto__ || Object.getPrototypeOf(AddProfile)).call(this, proprs));
+    var _this = _possibleConstructorReturn(this, (AddProfile.__proto__ || Object.getPrototypeOf(AddProfile)).call(this, props));
 
     _this.state = {
       name: '',
+      age: '',
       bio: '',
       hobby: ''
     };
+
     _this.handleName = _this.handleName.bind(_this);
+    _this.handleAge = _this.handleAge.bind(_this);
+    _this.handleBio = _this.handleBio.bind(_this);
+    _this.handleHobby = _this.handleHobby.bind(_this);
+    _this.handleAddProfile = _this.handleAddProfile.bind(_this);
     return _this;
   }
 
   _createClass(AddProfile, [{
     key: 'handleName',
-    value: function handleName() {
+    value: function handleName(e) {
       this.setState({
         name: e.target.value
       });
+    }
+  }, {
+    key: 'handleAge',
+    value: function handleAge(e) {
+      this.setState({
+        age: e.target.value
+      });
+    }
+  }, {
+    key: 'handleBio',
+    value: function handleBio(e) {
+      this.setState({
+        bio: e.target.value
+      });
+    }
+  }, {
+    key: 'handleHobby',
+    value: function handleHobby(e) {
+      this.setState({
+        hobby: e.target.value
+      });
+    }
+  }, {
+    key: 'handleAddProfile',
+    value: function handleAddProfile(e) {
+      var newProfile = {
+        name: this.state.name,
+        age: this.state.age,
+        bio: this.state.bio,
+        hobbies: [this.state.hobby]
+      };
+      this.props.addProfile(newProfile);
     }
   }, {
     key: 'render',
@@ -145,20 +183,54 @@ var AddProfile = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'p',
+          'h2',
           null,
           'Add a new profile'
         ),
         _react2.default.createElement(
-          'button',
-          { onClick: this.props.addProfile },
-          'Add'
-        ),
-        _react2.default.createElement('input', { onChange: this.handleName, value: this.state.name }),
-        _react2.default.createElement(
-          'p',
+          'div',
           null,
-          this.state.name
+          _react2.default.createElement(
+            'label',
+            null,
+            'Name: '
+          ),
+          _react2.default.createElement('input', { onChange: this.handleName, value: this.state.name })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            null,
+            'Age: '
+          ),
+          _react2.default.createElement('input', { onChange: this.handleAge, value: this.state.age })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            null,
+            'Bio: '
+          ),
+          _react2.default.createElement('input', { onChange: this.handleBio, value: this.state.bio })
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'label',
+            null,
+            'Hobby: '
+          ),
+          _react2.default.createElement('input', { onChange: this.handleHobby, value: this.state.hobby })
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.handleAddProfile },
+          'Add'
         )
       );
     }
@@ -168,6 +240,25 @@ var AddProfile = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = AddProfile;
+
+/***/ }),
+
+/***/ "./app/components/App.css":
+/*!********************************!*\
+  !*** ./app/components/App.css ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -199,6 +290,14 @@ var _AddProfile = __webpack_require__(/*! ./AddProfile.jsx */ "./app/components/
 
 var _AddProfile2 = _interopRequireDefault(_AddProfile);
 
+var _profileApi = __webpack_require__(/*! ../utils/profileApi.js */ "./app/utils/profileApi.js");
+
+var _CustomContentComponent = __webpack_require__(/*! ./CustomContentComponent.jsx */ "./app/components/CustomContentComponent.jsx");
+
+var _CustomContentComponent2 = _interopRequireDefault(_CustomContentComponent);
+
+__webpack_require__(/*! ./App.css */ "./app/components/App.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -207,10 +306,33 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// Examples functional stateless component
+var MyComponent = function MyComponent(props) {
+  return (
+    // Like render() function but no 'this' or 'return'
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'p',
+        null,
+        'I am a functional stateless component!'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'Property X: ',
+        props.x
+      )
+    )
+  );
+};
+
 // 'default' keyword allows caller to import this class without wrapping in braces. So instead of:
 //    import {Profile} from './components/Profile.jsx'
 // user can write:
 //    import Profile from './components/Profile.jsx'
+
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -220,17 +342,7 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      profiles: [{
-        name: 'Sue',
-        age: 30,
-        bio: 'enjoys swimming and biking',
-        hobbies: ['swimming', 'biking']
-      }, {
-        name: 'Bill',
-        age: 40,
-        bio: 'enjoys long walks on the beach',
-        hobbies: ['gardening', 'games']
-      }]
+      profiles: []
 
       // Bind each instance function to this instance so that we don't need to call find when setting
       // up event handers. For example, instead of:
@@ -241,21 +353,37 @@ var App = function (_React$Component) {
     return _this;
   }
 
-  // React doesn't use native browser events; it has its own synthetic event system on top. This
-  // allows it work around event inconsistencies across older browsers.
+  /**
+   * invoked immediately after a component is mounted (inserted into the tree and after render()).
+   * Initialization that requires DOM nodes should go here. If you need to load data from a remote
+   * endpoint, this is a good place to instantiate the network request.
+   */
 
 
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      (0, _profileApi.getProfiles)().then(function (profiles) {
+        return _this2.setState({ profiles: profiles });
+      });
+    }
+
+    // React doesn't use native browser events; it has its own synthetic event system on top. This
+    // allows it work around event inconsistencies across older browsers.
+
+  }, {
     key: 'addProfile',
-    value: function addProfile(e) {
+    value: function addProfile(profile) {
       // e.target - the element that raised the event
 
-      var profile = {
-        name: 'Tom',
-        age: 22,
-        bio: 'enjoys sports',
-        hobbies: ['basketball', 'baseball']
-      };
+      // let profile = {
+      //   name: 'Tom',
+      //   age: 22,
+      //   bio: 'enjoys sports',
+      //   hobbies: ['basketball', 'baseball']
+      // };
 
       // While this will add the profile to this.state, it won't trigger a rerender
       // this.state.push(profile);
@@ -270,11 +398,25 @@ var App = function (_React$Component) {
     key: 'render',
     value: function render() {
       var profiles = this.state.profiles.map(function (profile) {
-        return _react2.default.createElement(_Profile2.default, { name: profile.name, age: profile.age, bio: profile.bio, hobbies: profile.hobbies });
+        return _react2.default.createElement(_Profile2.default, { key: profile.id, name: profile.name, age: profile.age, bio: profile.bio, hobbies: profile.hobbies });
       });
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'App' },
+        _react2.default.createElement(
+          _CustomContentComponent2.default,
+          null,
+          _react2.default.createElement(
+            'p',
+            null,
+            'Arbitrary content'
+          )
+        ),
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Profiles'
+        ),
         profiles,
         _react2.default.createElement(_AddProfile2.default, { addProfile: this.addProfile })
       );
@@ -285,6 +427,74 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = App;
+
+/***/ }),
+
+/***/ "./app/components/CustomContentComponent.jsx":
+/*!***************************************************!*\
+  !*** ./app/components/CustomContentComponent.jsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Example of a React component that supports arbitrary children via `this.props.children`.
+ */
+var CustomContentComponent = function (_React$Component) {
+  _inherits(CustomContentComponent, _React$Component);
+
+  function CustomContentComponent() {
+    _classCallCheck(this, CustomContentComponent);
+
+    return _possibleConstructorReturn(this, (CustomContentComponent.__proto__ || Object.getPrototypeOf(CustomContentComponent)).apply(this, arguments));
+  }
+
+  _createClass(CustomContentComponent, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Custom Content Component'
+        ),
+        this.props.children,
+        _react2.default.createElement(
+          'p',
+          null,
+          'More content'
+        )
+      );
+    }
+  }]);
+
+  return CustomContentComponent;
+}(_react2.default.Component);
+
+exports.default = CustomContentComponent;
 
 /***/ }),
 
@@ -316,6 +526,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// Profile component as a function instead of a class
+// let Profile = props => (
+//   <div>
+//     <h2>{props.name}</h2>
+//     <p>
+//       {props.name} is {props.age} and {props.bio}
+//     </p>
+//     <h3>Hobbies</h3>
+//     <ul>
+//       {props.hobbies.map((hobby, index) => <li key={index}>{hobby}</li>)}
+//     </ul>
+//   </div>
+// );
+// export default Profile;
+
 // 'default' keyword allows caller to import this class without wrapping in braces. So instead of:
 //    import {Profile} from './components/Profile.jsx'
 // user can write:
@@ -330,12 +555,21 @@ var Profile = function (_React$Component) {
   }
 
   _createClass(Profile, [{
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      // Keep logic efficient and to a minimum - we are trying to improve performance by deciding
+      // whether or not to re-render the component. The test should cost less than the render cost to 
+      // be worthwhile
+      return this.props.name !== nextProps.name || this.props.age !== nextProps.age || this.props.bio !== nextProps.bio;
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var hobbies = this.props.hobbies.map(function (hobby) {
+      console.log('Rendering Profile component');
+      var hobbies = this.props.hobbies.map(function (hobby, index) {
         return _react2.default.createElement(
           'li',
-          null,
+          { key: index },
           hobby
         );
       });
@@ -377,6 +611,25 @@ exports.default = Profile;
 
 /***/ }),
 
+/***/ "./app/index.css":
+/*!***********************!*\
+  !*** ./app/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\r\n  font-family: sans-serif;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./app/index.jsx":
 /*!***********************!*\
   !*** ./app/index.jsx ***!
@@ -395,6 +648,8 @@ var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/i
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+__webpack_require__(/*! ./index.css */ "./app/index.css");
+
 var _App = __webpack_require__(/*! ./components/App.jsx */ "./app/components/App.jsx");
 
 var _App2 = _interopRequireDefault(_App);
@@ -402,6 +657,119 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
+
+/***/ }),
+
+/***/ "./app/utils/profileApi.js":
+/*!*********************************!*\
+  !*** ./app/utils/profileApi.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getProfiles = getProfiles;
+var ENDPOINT = '/profiles.json';
+
+function getProfiles() {
+  return fetch(ENDPOINT).then(function (r) {
+    return r.json();
+  }).catch(function (err) {
+    return console.error(err);
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
 
 /***/ }),
 

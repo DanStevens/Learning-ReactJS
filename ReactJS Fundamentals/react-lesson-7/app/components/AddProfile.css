@@ -1,0 +1,7 @@
+.addProfileForm {
+  width: 400px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-gap: 8px;
+  margin-bottom: 20px;
+}

@@ -71,7 +71,6 @@ export default class App extends React.Component {
     })
     return (
       <div>
-        <CustomContentControl><p>Arbitrary content</p></CustomContentControl>
         <h1>Profiles</h1>
         {profiles}
         <AddProfile addProfile={this.addProfile} />

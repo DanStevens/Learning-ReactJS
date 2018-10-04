@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddProfile.css';
 
 export default class AddProfile extends React.Component {
   constructor(props) {
@@ -56,19 +57,13 @@ export default class AddProfile extends React.Component {
     return (
       <div>
         <h2>Add a new profile</h2>
-        <div>
+        <div class="addProfileForm">
           <label>Name: </label>
           <input onChange={this.handleName} value={this.state.name} />
-        </div>
-        <div>
           <label>Age: </label>
           <input onChange={this.handleAge} value={this.state.age} />
-        </div>
-        <div>
           <label>Bio: </label>
           <input onChange={this.handleBio} value={this.state.bio} />
-        </div>
-        <div>
           <label>Hobby: </label>
           <input onChange={this.handleHobby} value={this.state.hobby} />
         </div>

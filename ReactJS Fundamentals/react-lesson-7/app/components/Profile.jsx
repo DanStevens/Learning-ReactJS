@@ -33,11 +33,11 @@ export default class Profile extends React.Component {
     let hobbies = this.props.hobbies.map((hobby, index) => <li key={index}>{hobby}</li>);
     return (
       <div>
-        <h1>{this.props.name}</h1>
+        <h2>{this.props.name}</h2>
         <p>
           {this.props.name} is {this.props.age} and {this.props.bio}
         </p>
-        <h2>Hobbies</h2>
+        <h3>Hobbies</h3>
         <ul>
           {hobbies}
         </ul>
