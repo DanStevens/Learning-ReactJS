@@ -66,7 +66,7 @@ export default class App extends React.Component {
   render() {
     let profiles = this.state.profiles.map(profile => {
       return (
-        <Profile name={profile.name} age={profile.age} bio={profile.bio} hobbies={profile.hobbies} />
+        <Profile key={profile.id} name={profile.name} age={profile.age} bio={profile.bio} hobbies={profile.hobbies} />
       );
     })
     return (

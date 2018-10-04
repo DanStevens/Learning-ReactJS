@@ -8,7 +8,7 @@ let Profile = props => (
     </p>
     <h3>Hobbies</h3>
     <ul>
-      {props.hobbies.map(hobby => <li>{hobby}</li>)}
+      {props.hobbies.map((hobby, index) => <li key={index}>{hobby}</li>)}
     </ul>
   </div>
 );

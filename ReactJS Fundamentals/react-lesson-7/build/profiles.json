@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "name": "Sue",
     "age": 30,
     "bio": "enjoys swimming and biking",
@@ -9,6 +10,7 @@
     ]
   },
   {
+    "id": 1,
     "name": "Bill",
     "age": 40,
     "bio": "enjoys long walks on the beach",
